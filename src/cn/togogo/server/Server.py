@@ -3,12 +3,13 @@ import struct
 import os
 import threading
 from time import sleep
-import  hashlib
+import hashlib
 
 
 def serverupload(newsock):
     sum = 0
     myfilename = newsock.recv(100)
+    newsock.send('ok')
     recvtime = int(newsock.recv(4))
     newsock.send('ok')
     filesize = long(newsock.recv(20))
@@ -44,6 +45,7 @@ def serverupload(newsock):
         sum += os.path.getsize(new_path_filename)
     print sum
 
+
 if __name__ == '__main__':
     host = '127.0.0.1'
     port = 9999
@@ -51,22 +53,12 @@ if __name__ == '__main__':
     socket.bind((host,port))
     socket.listen(5)
     while True:
-        newsock, address = socket.accept()
-        print "accept another connection"
-        myfilename = newsock.recv(40)
-        recvtime = long(newsock.recv(20))
-
-        new_path_filename = r'/home/hyt/huanrong/b/'+myfilename
-        file_object = open(new_path_filename, 'w')
-        for i in range(1,recvtime+1,1):
-            recvdata = newsock.recv(10240)
-            file_object.write(recvdata)
-            file_object.flush()
-        file_object.close()
-        print 'end'
-
         sock, address = socket.accept()
         print "accept another connection"
         thread = threading.Thread(target=serverupload, args=(sock,))
         thread.setDaemon(True)
         thread.start()
+
+
+
+
