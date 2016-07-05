@@ -7,8 +7,8 @@ import hashlib
 
 
 def serverupload(newsock):
-   print 't' 
-   print 'h'
+    print 't' 
+    print 'hi,my daling'
     print 'y'
     print 'hello'
     sum = 0
