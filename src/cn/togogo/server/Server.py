@@ -7,6 +7,7 @@ import hashlib
 
 
 def serverupload(newsock):
+    pring 'd'
     print 'h'
     print 'y'
     print 'hello'
