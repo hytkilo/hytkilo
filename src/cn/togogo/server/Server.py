@@ -7,6 +7,7 @@ import hashlib
 
 
 def serverupload(newsock):
+    print 'h'
     print 'hello'
     sum = 0
     myfilename = newsock.recv(100)
